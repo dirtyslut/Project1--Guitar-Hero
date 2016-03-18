@@ -14,7 +14,7 @@ Rules:
 Each player starts with 7 cards 
 Rest of the cards go into the "ocean"
 
-:smile:Player1 Ask player2 if they have one of their own cards
+Player1 Ask player2 if they have one of their own cards
     If player2 has requested card
         Player2 loses requested card 
         Player1 gains all requested card
@@ -29,3 +29,26 @@ When ocean is dry
 
 
 -----
+deck = object{suites: values}
+hand = array 
+match = function()
+game = constructor object 
+player = object{name: "", age: number}
+var card = {}
+card.value = 13 
+card.faceValue = "King"
+card.color = "red"
+card.suit = "diamond"
+
+
+-------
+Verbs 
+
+matches (evaluate 2/4 cards)
+turn (determine who goes)
+go(discard to ocean)
+submits(pair pile)
+gains(requested card)
+loses(requested card)
+draw(new card)
+terminate (game when player empties hand)
