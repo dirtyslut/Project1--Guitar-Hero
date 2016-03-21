@@ -120,7 +120,7 @@ tbody {
   top: 50%;
   right: -12%;
 }
-
+/*
 .note {
   width: 30px;
   height: 30px;
@@ -164,7 +164,7 @@ tbody {
 #A_spin figure:nth-child(2){ transform: rotateX(40deg) translateZ(288px);}
 #A_spin figure:nth-child(3){ transform: rotateX(0deg) translateZ(288px);}
 #A_spin figure:nth-child(4){ transform: rotateX(0deg) translateZ(288px);}
-
+*/
   .container{
   position: relative;
   margin: 10px auto;
@@ -182,7 +182,7 @@ tbody {
 }
 
 .container:hover .card{
-  transform: rotateY(180deg);
+  transform: rotateX(180deg);
 }
 
 .face {
@@ -195,7 +195,7 @@ tbody {
 
 .back {
   display: block;
-  transform: rotateY(180deg);
+  transform: rotateX(180deg);
   box-sizing: border-box;
   padding: 10px;
   color: white;
