@@ -121,16 +121,86 @@ tbody {
   right: -12%;
 }
 
+.note {
+  width: 30px;
+  height: 30px;
+  border: 1px solid;
+  margin-left: auto;
+  margin-right: auto;
+}
 
+.carousel {
+  width: 210px;
+  height: 140px;
+  position: relative;
+  perspective: 1000px;
+  left: 800px;
+  top: 50px;
+}
 
+.carousel:hover #A_spin{
+  transform: translateZ(20px);
+}
 
+#A_spin {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+}
 
+#A_spin figure {
+  margin: 0;
+  display: block;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  left: 10px;
+  top: 10px;
+  border: 1px solid black;
+}
 
+#A_spin figure:nth-child(1){ transform: rotateX(0deg) translateZ(288px);}
+#A_spin figure:nth-child(2){ transform: rotateX(40deg) translateZ(288px);}
+#A_spin figure:nth-child(3){ transform: rotateX(0deg) translateZ(288px);}
+#A_spin figure:nth-child(4){ transform: rotateX(0deg) translateZ(288px);}
 
+  .container{
+  position: relative;
+  margin: 10px auto;
+  width: 450px;
+  height: 281px;
+  text-align: center;
+  perspective: 1000px;
+}
 
+.card {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: all 1.0s linear;
+}
 
+.container:hover .card{
+  transform: rotateY(180deg);
+}
 
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background-color: tomato;
+}
 
+.back {
+  display: block;
+  transform: rotateY(180deg);
+  box-sizing: border-box;
+  padding: 10px;
+  color: white;
+  background: lightgray;
+}
 
 
 
