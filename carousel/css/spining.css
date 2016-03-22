@@ -1,1 +1,19 @@
+/*#defaultCanvas0 {
+  background: teal;
+}
 
+#canvas {
+height: 500px;
+width: 500px;
+background: teal;
+}
+*/
+
+ body {
+      margin: 0px;
+      padding: 50px;
+    }
+
+    #myCanvas {
+      border: 1px #CCC solid;
+    }
