@@ -9,6 +9,8 @@ var ballRadius = 15;
 var dx = 2;
 var dy = -2;
 var aPressed = false;
+var score = 0;
+var circleOn = true;
 
 
 document.addEventListener("keydown", keyDownHandler, false);
@@ -26,12 +28,23 @@ function keyUpHandler(event){
   }
 }
 
+function collisionDetector(){
+  if( y >= 290 && y <= 310 && aPressed && circleOn){
+    score += 1;
+    circleOn = false;
+    console.log('we are in');
+  }
+}
+
 function drawSphere(){
-  ctx.beginPath();
-  ctx.arc(x, y, ballRadius, 0, Math.PI*2, false);
-  ctx.flllstyle = "#0095DD";
-  ctx.fill();
-  ctx.closePath();
+  if(circleOn){
+    ctx.beginPath();
+    ctx.arc(x, y, ballRadius, 0, Math.PI*2, false);
+    ctx.flllstyle = "#0095DD";
+    ctx.fill();
+    ctx.closePath();
+  }
+
 }
 
 function drawA(){
@@ -52,10 +65,17 @@ function drawAColor(){
   ctx.closePath();
 }
 
+function drawScore(){
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "black";
+  ctx.fillText("Score: " +score, 8, 20);
+}
+
 function draw (){
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
   drawSphere();
-
+  drawScore();
+  collisionDetector();
 
   if(aPressed){
     drawAColor();
