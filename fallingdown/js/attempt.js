@@ -81,7 +81,17 @@ $( document ).ready(function(){
 
   }
 
-$('.box').
+  // function determineHit(){
+  //   if(position of ball )
+  // }
+
+  // $('body').keydown(function(event) {
+    /* Act on the event */
+    // if(event.keyCode === 65)
+    // console.log('A button has been pressed');
+    // console.log(keyCode);
+  // });
+
 
 
 });
