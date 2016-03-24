@@ -1,1 +1,23 @@
-canvas { background: #eee; }
+#myCanvas {
+  background: #eee;
+}
+
+
+
+@media screen and (max-width: 980px){
+    #myCanvas{
+    width: 65%;
+    }
+}
+
+@media screen and (max-width: 700px){
+   #myCanvas{
+    width: 65%;
+    }
+}
+
+@media screen and (max-width: 480px){
+   #myCanvas{
+    width: 65%;
+    }
+}

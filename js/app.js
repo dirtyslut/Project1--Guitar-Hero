@@ -11,7 +11,7 @@ var game;
 var timeTracker;
 var retry = false;
 var winner = false;
-// var cicleOn = true;
+
 
 var Sphere = function(x, y, radius, fillStyle, strokeStyle){
   this.x = x;
@@ -22,14 +22,10 @@ var Sphere = function(x, y, radius, fillStyle, strokeStyle){
 };
 
 
-var droppingSphere = new Sphere(x, y, ballRadius, "#FFE990", false);
-var outlineSphere = new Sphere(x, 280, ballRadius, false, "#D49C1E");
-var pressedSphere = new Sphere(x, 280, ballRadius, "#D49C1E", false);
+var droppingSphere = new Sphere(x, y, ballRadius, '#FFE990', false);
+var outlineSphere = new Sphere(x, 280, ballRadius, false, '#D49C1E');
+var pressedSphere = new Sphere(x, 280, ballRadius, '#D49C1E', false);
 
-// var circleHolder = [];
-// for (var i = 0; i < 3; i++){
-//   circleHolder.push(droppingSphere);
-// }
 
 $( document ).ready(function(){
 
@@ -41,10 +37,9 @@ $( document ).ready(function(){
   var x = canvasWidth / 2;
 
 
-  $(document).on("keydown", function (event){
+  $(document).on('keydown', function (event){
     if ( event.keyCode == 65 && !aHeld ) {
       aPressed = true;
-      // aHeld = true;
       setTimeout(function(){
         aHeld = true;
         aPressed = false;
@@ -52,7 +47,7 @@ $( document ).ready(function(){
     }
   });
 
-  $(document).on("keyup", function (event){
+  $(document).on('keyup', function (event){
     if(event.keyCode == 65){
       aPressed = false;
       aHeld = false;
@@ -81,7 +76,6 @@ $( document ).ready(function(){
     collisionDetector();
     droppingSphere.drawFillCircle();
     drawTimer();
-    // setInterval(countdown --, 1000);
     droppingSphere.y += 2.0842;
     outlineSphere.drawStrokedCircle();
 
@@ -92,10 +86,6 @@ $( document ).ready(function(){
     if(droppingSphere.y > 320){
       droppingSphere.y = 0;
     }
-    // if (score > 1){
-    //   var element = window.confirm("Do you want to play again");
-    //   console.log(element);
-    // }
   }
 
   function collisionDetector(){
@@ -105,20 +95,17 @@ $( document ).ready(function(){
     }
   }
 
-
   function drawScore(){
-    ctx.font = "16px Arial";
-    ctx.fillStyle = "#D49C1E";
-    ctx.fillText("Score: " +score, 8, 20);
+    ctx.font = '16px Arial';
+    ctx.fillStyle = '#D49C1E';
+    ctx.fillText('Score: ' +score, 8, 20);
   }
 
   function drawTimer(){
-    ctx.font = "16px Arial";
-    ctx.fillStyle = "#D49C1E";
-    ctx.fillText("Timer: " + countdown, 400, 20);
+    ctx.font = '16px Arial';
+    ctx.fillStyle = '#D49C1E';
+    ctx.fillText('Timer: ' + countdown, 400, 20);
   }
-
-
 
   game = setInterval(draw, 10);
 
@@ -127,35 +114,25 @@ $( document ).ready(function(){
       if (countdown < 28 && score < 1){
         clearInterval(game);
         clearInterval(seconds);
-        retry = window.confirm("Your score is " +score + "               Do you want to play again");
+        retry = window.confirm('Your score is ' +score + '               Do you want to play again');
       } else if(countdown < 28 && score > 1){
         clearInterval(game);
         clearInterval(seconds);
-        winner = window.confirm("Congrats your score is " +score);
+        winner = window.confirm('Congrats your score is ' +score + '      Do you want to play again');
       }
     };
 
     var seconds = setInterval(timeTracker, 1000);
 
-    // if(retry === true){
-    //   console.log('why not');
-    //   document.location.reload();
-    // }
+    if(retry === true){
+      console.log('why not');
+      document.location.reload();
+    }
 
 
 
 }); // DOM ready
 
-
-
-
-
-
-
-
-  if (retry === true ){
-    console.log('yay');
-  }
 
 
 
