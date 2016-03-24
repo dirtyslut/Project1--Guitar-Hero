@@ -4,7 +4,7 @@ var ctx = canvas.getContext('2d');
 var canvasWidth = canvas.width;
 var canvasHeight = canvas.height;
 var x = canvas.width / 2;
-var y = 50;
+var y = -50;
 var ballRadius = 15;
 var dx = 2;
 var dy = -2;
@@ -85,7 +85,11 @@ function drawScore(){
 
 function draw (){
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-  drawSphere();
+  for(var i = 0; i < 3; i ++){
+    setInterval(drawSphere(), 1000);
+  }
+
+
   drawScore();
   collisionDetector();
 
@@ -96,6 +100,10 @@ function draw (){
   }
 
   y -= dy;
+
+  // if( y > canvasHeight + 100){
+  //   document.location.reload();
+  // }
 }
 
 setInterval(draw, 10);
