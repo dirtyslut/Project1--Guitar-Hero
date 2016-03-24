@@ -1,13 +1,37 @@
-var y = -50;
+var x = 240;
+var y = 20;
 var ballRadius = 15;
 var dx = 2;
-var dy = -2;
+var dy = -10;
 var aPressed = false;
 var score = 0;
-var circleOn = true;
 var aHeld = false;
+var countdown = 30;
+var game;
+var timeTracker;
+var retry = false;
+var winner = false;
+// var cicleOn = true;
 
-$( document ).ready(function (){
+var Sphere = function(x, y, radius, fillStyle, strokeStyle){
+  this.x = x;
+  this.y = y;
+  this.radius = radius;
+  this.fillStyle = fillStyle;
+  this.strokeStyle = strokeStyle;
+};
+
+
+var droppingSphere = new Sphere(x, y, ballRadius, "#FFE990", false);
+var outlineSphere = new Sphere(x, 280, ballRadius, false, "#D49C1E");
+var pressedSphere = new Sphere(x, 280, ballRadius, "#D49C1E", false);
+
+// var circleHolder = [];
+// for (var i = 0; i < 3; i++){
+//   circleHolder.push(droppingSphere);
+// }
+
+$( document ).ready(function(){
 
   var $canvas = $('#myCanvas');
   var ctx = $canvas.get(0).getContext('2d');
@@ -17,7 +41,7 @@ $( document ).ready(function (){
   var x = canvasWidth / 2;
 
 
-  $(document).on("keydown", function keyDownHandler(event){
+  $(document).on("keydown", function (event){
     if ( event.keyCode == 65 && !aHeld ) {
       aPressed = true;
       // aHeld = true;
@@ -28,76 +52,59 @@ $( document ).ready(function (){
     }
   });
 
-  $(document).on("keyup", function keyUpHandler(event){
+  $(document).on("keyup", function (event){
     if(event.keyCode == 65){
       aPressed = false;
       aHeld = false;
     }
   });
 
-  function drawSphere(){
-    if(circleOn){
-      ctx.beginPath();
-      ctx.arc(x, y, ballRadius, 0, Math.PI*2, false);
-      ctx.fillStyle = "#FFE990";
-      ctx.fill();
-      ctx.closePath();
-    }
-  }
+  Sphere.prototype.drawFillCircle = function(){
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
+    ctx.fillStyle = this.fillStyle;
+    ctx.fill();
+    ctx.closePath();
+  };
 
+  Sphere.prototype.drawStrokedCircle = function(){
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
+    ctx.strokeStyle = this.strokeStyle;
+    ctx.stroke();
+    ctx.closePath();
+  };
 
   function draw (){
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-    drawSphere();
     drawScore();
     collisionDetector();
+    droppingSphere.drawFillCircle();
+    drawTimer();
+    // setInterval(countdown --, 1000);
+    droppingSphere.y += 2.0842;
+    outlineSphere.drawStrokedCircle();
 
-    if (aPressed){
-      drawAColor();
-    } else if(!aPressed){
-      drawA();
-    } else {
-      //
+    if(aPressed){
+      pressedSphere.drawFillCircle();
     }
 
-    y -= dy;
-
-    if (y > 320){
-      y = 0;
+    if(droppingSphere.y > 320){
+      droppingSphere.y = 0;
     }
-
-    // if( y > canvasHeight + 100){
-    //   document.location.reload();
+    // if (score > 1){
+    //   var element = window.confirm("Do you want to play again");
+    //   console.log(element);
     // }
   }
 
   function collisionDetector(){
-    if( y >= 240 && y <= 260 && aPressed && circleOn){
+    if( droppingSphere.y >= 270 && droppingSphere.y <= 290 && aPressed){
       score += 1;
-      // circleOn = false;
-      y = 0;
-      // circleOn = true;
-      console.log('we are in');
+      droppingSphere.y = 0;
     }
   }
 
-  function drawA(){
-    ctx.beginPath();
-    ctx.arc(240, 250, 15, 0, Math.PI*2, false);
-    // ctx.flllstyle = "#0095DD";
-    // ctx.fill();
-    ctx.strokeStyle = "#D49C1E";
-    ctx.stroke();
-    ctx.closePath();
-  }
-
-  function drawAColor(){
-      ctx.beginPath();
-      ctx.arc(240, 250, 15, 0, Math.PI*2, false);
-      ctx.fillStyle = "#D49C1E";
-      ctx.fill();
-      ctx.closePath();
-  }
 
   function drawScore(){
     ctx.font = "16px Arial";
@@ -105,8 +112,50 @@ $( document ).ready(function (){
     ctx.fillText("Score: " +score, 8, 20);
   }
 
-  setInterval(draw, 10);
+  function drawTimer(){
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "#D49C1E";
+    ctx.fillText("Timer: " + countdown, 400, 20);
+  }
+
+
+
+  game = setInterval(draw, 10);
+
+  timeTracker = function(){
+      countdown--;
+      if (countdown < 28 && score < 1){
+        clearInterval(game);
+        clearInterval(seconds);
+        retry = window.confirm("Your score is " +score + "               Do you want to play again");
+      } else if(countdown < 28 && score > 1){
+        clearInterval(game);
+        clearInterval(seconds);
+        winner = window.confirm("Congrats your score is " +score);
+      }
+    };
+
+    var seconds = setInterval(timeTracker, 1000);
+
+    // if(retry === true){
+    //   console.log('why not');
+    //   document.location.reload();
+    // }
+
+
 
 }); // DOM ready
+
+
+
+
+
+
+
+
+  if (retry === true ){
+    console.log('yay');
+  }
+
 
 
