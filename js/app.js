@@ -111,23 +111,23 @@ $( document ).ready(function(){
 
   timeTracker = function(){
       countdown--;
-      if (countdown <= 0 && score < 20){
-        clearInterval(game);
-        clearInterval(seconds);
-        retry = window.confirm('Your score is ' +score + '               Do you want to play again');
-      } else if(countdown <= 0 && score >= 20){
-        clearInterval(game);
-        clearInterval(seconds);
-        winner = window.confirm('Congrats your score is ' +score + '      Do you want to play again');
-      }
+      // if (countdown <= 0 && score < 20){
+      //   clearInterval(game);
+      //   clearInterval(seconds);
+      //   retry = window.confirm('Your score is ' +score + '               Do you want to play again');
+      // } else if(countdown <= 0 && score >= 20){
+      //   clearInterval(game);
+      //   clearInterval(seconds);
+      //   winner = window.confirm('Congrats your score is ' +score + '      Do you want to play again');
+      // }
     };
 
     var seconds = setInterval(timeTracker, 1000);
 
-    if(retry === true){
-      console.log('why not');
-      document.location.reload();
-    }
+    // if(retry === true){
+    //   console.log('why not');
+    //   document.location.reload();
+    // }
 
 
 
