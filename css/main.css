@@ -1,7 +1,25 @@
 #myCanvas {
   background: #eee;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+
 }
 
+button {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+
+}
+
+h1 {
+  text-align: center;
+}
 @media screen and (max-width: 980px){
     #myCanvas{
     width: 65%;

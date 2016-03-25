@@ -1,16 +1,12 @@
 var x = 240;
 var y = 20;
 var ballRadius = 15;
-var dx = 2;
-var dy = -10;
-var aPressed = false;
 var score = 0;
 var aHeld = false;
+var aPressed = false;
 var countdown = 30;
 var game;
 var timeTracker;
-var retry = false;
-var winner = false;
 
 
 var Sphere = function(x, y, radius, fillStyle, strokeStyle){
@@ -31,6 +27,8 @@ $( document ).ready(function(){
 
   var $canvas = $('#myCanvas');
   var ctx = $canvas.get(0).getContext('2d');
+  var $button = $('button');
+
 
   var canvasWidth = $canvas.width();
   var canvasHeight = $canvas.height();
@@ -107,32 +105,42 @@ $( document ).ready(function(){
     ctx.fillText('Timer: ' + countdown, 400, 20);
   }
 
+  function endScreen (){
+    ctx.clearRect(0,0, canvasWidth, canvasHeight);
+    ctx.font = '16px Arial';
+    ctx.fillStyle = '#D49C1E';
+    ctx.fillText('Your score is ' + score, 190, 160);
+  }
+
+  function congratScreen(){
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    ctx.font = '16px Arial';
+    ctx.fillStyle = '#D49C1E';
+    ctx.fillText('Congrats your a winner with a score of ' + score, 92, 160);
+  }
   game = setInterval(draw, 10);
 
   timeTracker = function(){
       countdown--;
-      if (countdown <= 0 && score < 20){
+      if (countdown < 0 && score < 20){
         clearInterval(game);
         clearInterval(seconds);
-        retry = window.confirm('Your score is ' +score + '               Do you want to play again');
-      } else if(countdown <= 0 && score >= 20){
+        endScreen();
+      } else if(countdown < 0 && score >= 20){
         clearInterval(game);
         clearInterval(seconds);
-        winner = window.confirm('Congrats your score is ' +score + '      Do you want to play again');
+        congratScreen();
       }
     };
 
     var seconds = setInterval(timeTracker, 1000);
 
-    // if(retry === true){
-    //   console.log('why not');
-    //   document.location.reload();
-    // }
 
+    $('button').on('click', function(){
+      document.location.reload();
+    });
 
 
 }); // DOM ready
-
-
 
 
