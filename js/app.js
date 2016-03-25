@@ -1,3 +1,5 @@
+
+//Hey Ahmed, your game is the shit! - Ian
 // creating global variables to be accessed by any function
 var x = 240;
 var y = 20;
