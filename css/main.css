@@ -2,8 +2,6 @@
   background: #eee;
 }
 
-
-
 @media screen and (max-width: 980px){
     #myCanvas{
     width: 65%;

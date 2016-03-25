@@ -2,7 +2,7 @@ Hello World
 
 This is my first project. I will be building a game modeled after guitar hero. 
 
-The objective of the game is to press the A button when the falling circle is aligned with the fixed circle down below. 
+The objective of the game is to press the A button when the falling circle is aligned with the fixed circle down below. Holding the A button will not result in a point. 
 
 Be quick you only have 30 seconds to play. 
 
